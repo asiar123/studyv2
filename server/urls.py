@@ -19,13 +19,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import include
 from user.views import Login
+from matery.views import añadirMateria
 from django.contrib.auth.decorators import login_required
 from user.views import logoutUsuario
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('',include(('home.urls'))),
     path('accounts/login/', Login.as_view(), name = 'login'),
     path('user/',include(('user.urls','user'))),
+    path('matery/',añadirMateria.as_view(), name="matery"),
     path('logout/',login_required(logoutUsuario),name = 'logout'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
